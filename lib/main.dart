@@ -22,7 +22,7 @@ class myApp extends StatelessWidget {
         child: new Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            new MyCard(icon: Icon(Icons.ac_unit, size: 40, color: Colors.amber,), title: new Text("test", style: new TextStyle(fontWeight: FontWeight.bold),)),
+            new AwesomeButton()
           ],
         ),
       ),
@@ -30,28 +30,26 @@ class myApp extends StatelessWidget {
   }
 }
 
-class MyCard extends StatelessWidget {
-  final Widget title;
-  final Widget icon;
-  MyCard({this.title, this.icon});
+class AwesomeButton extends StatefulWidget {
+  @override
+  AwesomeButtonState createState() {
+    return new AwesomeButtonState();
+  }
+}
+class AwesomeButtonState extends State<AwesomeButton>{
+  int counter = 0;
+  List<String> strings = ["Flutter", "Is", "Awesome"];
+  var displayedString = "";
 
+onPressed() {
+  setState(() {
+    displayedString = strings[counter];
+    counter = counter < 2 ?  counter+1 : 0; 
+  });
+}
   @override
   Widget build(BuildContext context) {
-    return new Container(
-      padding: new EdgeInsets.only(bottom: 20.0),
-      child: new Card(
-        child: new Container(
-          padding: new EdgeInsets.all(5.0),
-          child: new Column(
-            children: <Widget>[
-              this.title,
-              this.icon
-            ],
-          )
-        ),
-      ),
-
-    );
+    return new RaisedButton(child: new Text(displayedString), onPressed: onPressed);
   }
 
 }
