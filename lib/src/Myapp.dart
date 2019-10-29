@@ -10,6 +10,8 @@ part 'auth/userAuth.dart';
 part './LoginPage.dart';
 part './BreadPage.dart';
 part './MeatPage.dart';
+part './Root.dart';
+part './HomePage.dart';
 
 
 
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'MyApp', home: LoginPage(auth: new Auth()), routes: {
+    return MaterialApp(title: 'MyApp', home: RootPage(auth: new Auth()), routes: {
       "/bread": (BuildContext context) => BreadPage(),
       "/two": (BuildContext context) => PageTwo()
     });

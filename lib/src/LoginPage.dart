@@ -2,8 +2,12 @@ part of my_app;
 
 
 class LoginPage extends StatefulWidget {
-  LoginPage({this.auth});
+  LoginPage({this.auth, this.onSignedIn, this.signOutHandler});
   final BaseAuth auth;
+  final VoidCallback onSignedIn;
+  final VoidCallback signOutHandler;
+
+
   @override
   State<StatefulWidget> createState() => new _LoginPageState();
 
@@ -23,9 +27,10 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              RaisedButton(child: Text("Sign In"), onPressed: () => widget.auth.signInWithGoogle()),
-              RaisedButton(child: Text("Bread"), onPressed: () => Navigator.of(context).pushNamed("/bread")),
-              RaisedButton(child: Text("Meat"), onPressed: () => Navigator.of(context).pushNamed("/two"))
+              RaisedButton(child: Text("Sign In"), onPressed: () {
+                widget.auth.signInWithGoogle();
+                widget.onSignedIn();
+              }),
             ]
       ),
     ));

@@ -8,6 +8,8 @@ abstract class BaseAuth {
   Future<String> signInWithEmailAndPasswrd(String email, String password);
   Future<String> signInWithGoogle();
   Future<String> createUserWithEmailAndPassword(String email, String password);
+  Future<FirebaseUser> currentUser();
+  void signOut();
 }
 
 class Auth implements BaseAuth {
@@ -19,6 +21,12 @@ class Auth implements BaseAuth {
   }
   Future<String> createUserWithEmailAndPassword(String email, String password) async {
     return (await _auth.createUserWithEmailAndPassword(email: email, password: password)).user.uid;
+  }
+  Future<FirebaseUser> currentUser()async {
+    return (await _auth.currentUser());
+  }
+  void signOut() {
+    _auth.signOut();
   }
 }
 
