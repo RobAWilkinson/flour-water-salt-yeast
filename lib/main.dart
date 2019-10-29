@@ -18,6 +18,15 @@ class MyApp extends StatelessWidget {
         {'text': 'cook'}
       ]
     },
+    {
+      'name': 'Wheat Bread',
+      'steps': [
+        {'text': 'annealease'},
+        {'text': 'knead'},
+        {'text': 'rise'},
+        {'text': 'cook'}
+      ]
+    },
   ];
   @override
   Widget build(BuildContext context) {
