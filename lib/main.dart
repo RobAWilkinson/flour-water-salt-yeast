@@ -1,28 +1,67 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 
 void main() {
-  runApp(
-    new MaterialApp(
-      title: 'Hello World App',
-      home: new myApp(),
-    )
-  );
+  runApp(MaterialApp(
+    title: 'Hello World App',
+    home: myApp(),
+    routes: <String, WidgetBuilder>{
+      "/SecondPage": (BuildContext context) => SecondPage(),
+      "/ThirdPage": (BuildContext context) => ThirdPage()
+    },
+  ));
+}
+
+class ThirdPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body: Center(child: Text("thirdpage")));
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+            title: Text("Second Page"), backgroundColor: Colors.deepOrange),
+        body: Container(
+            child: Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+              IconButton(
+                icon: Icon(Icons.home, color: Colors.blue),
+                iconSize: 70.0,
+                onPressed: null,
+              ),
+              Text("Second Page")
+            ]))));
+  }
 }
 
 class myApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Amys App'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Amys App'),
       ),
-      body: new Container(
+      body: Container(
         padding: EdgeInsets.all(20.0),
-        child: new Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            new AwesomeButton()
+            AwesomeButton(),
+            RaisedButton(
+                child: Text("navigate to page 2"),
+                onPressed: () {
+                  Navigator.of(context).pushNamed("/SecondPage");
+                }),
+            RaisedButton(
+                child: Text("navigate to page 3"),
+                onPressed: () {
+                  Navigator.of(context).pushNamed("/ThirdPage");
+                })
           ],
         ),
       ),
@@ -33,23 +72,24 @@ class myApp extends StatelessWidget {
 class AwesomeButton extends StatefulWidget {
   @override
   AwesomeButtonState createState() {
-    return new AwesomeButtonState();
+    return AwesomeButtonState();
   }
 }
-class AwesomeButtonState extends State<AwesomeButton>{
+
+class AwesomeButtonState extends State<AwesomeButton> {
   int counter = 0;
   List<String> strings = ["Flutter", "Is", "Awesome"];
   var displayedString = "";
 
-onPressed() {
-  setState(() {
-    displayedString = strings[counter];
-    counter = counter < 2 ?  counter+1 : 0; 
-  });
-}
-  @override
-  Widget build(BuildContext context) {
-    return new RaisedButton(child: new Text(displayedString), onPressed: onPressed);
+  onPressed() {
+    setState(() {
+      displayedString = strings[counter];
+      counter = counter < 2 ? counter + 1 : 0;
+    });
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return RaisedButton(child: Text(displayedString), onPressed: onPressed);
+  }
 }
