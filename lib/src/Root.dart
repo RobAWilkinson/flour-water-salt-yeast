@@ -13,7 +13,7 @@ enum AuthStatus { notSignedIn, signedIn }
 
 class _RootPageState extends State<RootPage> {
   AuthStatus _authStatus = AuthStatus.notSignedIn;
-  FirebaseUser _user = null;
+  FirebaseUser _user;
 
   void initState() {
     super.initState();
@@ -55,7 +55,7 @@ class _RootPageState extends State<RootPage> {
             onSignedIn: _onSignedIn,
             signOutHandler: _signOut);
       case AuthStatus.signedIn:
-        return HomePage(widget.auth, _signOut, _user);
+        return HomePage(_signOut, _user);
     }
   }
 }

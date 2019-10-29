@@ -2,11 +2,10 @@ part of my_app;
 
 class HomePage extends StatelessWidget {
 
-  final BaseAuth _auth;
   final VoidCallback _signOutHandler;
   final FirebaseUser _user;
 
-  HomePage(this._auth, this._signOutHandler, this._user);
+  HomePage(this._signOutHandler, this._user);
 
   @override
   Widget build(BuildContext context) {
