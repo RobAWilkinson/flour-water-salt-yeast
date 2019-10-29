@@ -11,16 +11,15 @@ Eventually will move on to the following todos
 ## TODO
 
 
-- User can be authenticated
-
-- User can see a list of their recipes
-- User can enter a new recipe
-- User can title a recipe
-- user can add a step to a recipe
-- user can add a description to a step
-- user can add a duration to a step
-- user can select a recipe
-- user can see a list of the recipe steps
-- user can start a recipe step
-- user can end a recipe step
-- user can add a photo of their recipe step
+- TODO User can be authenticated
+- TODO User can see a list of their recipes
+- TODO User can enter a new recipe
+- TODO User can title a recipe
+- TODO user can add a step to a recipe
+- TODO user can add a description to a step
+- TODO user can add a duration to a step
+- TODO user can select a recipe
+- TODO user can see a list of the recipe steps
+- TODO user can start a recipe step
+- TODO user can end a recipe step
+- TODO user can add a photo of their recipe step
