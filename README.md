@@ -10,6 +10,9 @@ Eventually will move on to the following todos
 
 ## TODO
 
+
+- User can be authenticated
+
 - User can see a list of their recipes
 - User can enter a new recipe
 - User can title a recipe
