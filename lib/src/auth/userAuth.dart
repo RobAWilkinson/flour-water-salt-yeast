@@ -1,8 +1,27 @@
 part of my_app;
-
-
-final GoogleSignIn _googleSignIn = GoogleSignIn();
+final GoogleSignIn _googleSignIn = GoogleSignIn(
+  scopes: ['email']
+);
 final FirebaseAuth _auth = FirebaseAuth.instance;
+
+abstract class BaseAuth {
+  Future<String> signInWithEmailAndPasswrd(String email, String password);
+  Future<String> signInWithGoogle();
+  Future<String> createUserWithEmailAndPassword(String email, String password);
+}
+
+class Auth implements BaseAuth {
+  Future<String> signInWithGoogle() async {
+    return (await _handleSignIn()).uid;
+  }
+  Future<String> signInWithEmailAndPasswrd(String email, String password) async {
+    return (await _auth.signInWithEmailAndPassword(email: email, password: password)).user.uid;
+  }
+  Future<String> createUserWithEmailAndPassword(String email, String password) async {
+    return (await _auth.createUserWithEmailAndPassword(email: email, password: password)).user.uid;
+  }
+}
+
 
 Future<FirebaseUser> _handleSignIn() async {
   final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
@@ -12,8 +31,6 @@ Future<FirebaseUser> _handleSignIn() async {
     accessToken: googleAuth.accessToken,
     idToken: googleAuth.idToken,
   );
-
   final FirebaseUser user = (await _auth.signInWithCredential(credential)).user;
-  print("signed in " + user.displayName);
   return user;
 }

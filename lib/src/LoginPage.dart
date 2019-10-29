@@ -1,7 +1,16 @@
 part of my_app;
 
 
-class HomePage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  LoginPage({this.auth});
+  final BaseAuth auth;
+  @override
+  State<StatefulWidget> createState() => new _LoginPageState();
+
+}
+
+class _LoginPageState extends State<LoginPage> {
+
   @override
   Widget build(BuildContext context) {
       
@@ -14,6 +23,7 @@ class HomePage extends StatelessWidget {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              RaisedButton(child: Text("Sign In"), onPressed: () => widget.auth.signInWithGoogle()),
               RaisedButton(child: Text("Bread"), onPressed: () => Navigator.of(context).pushNamed("/bread")),
               RaisedButton(child: Text("Meat"), onPressed: () => Navigator.of(context).pushNamed("/two"))
             ]
