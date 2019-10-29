@@ -1,55 +1,87 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 
 void main() {
-  runApp(
-    new MaterialApp(
-      title: 'Hello World App',
-      home: new myApp(),
-    )
-  );
+  runApp(MaterialApp(
+    title: 'Hello World App',
+    home: MyApp(),
+  ));
 }
 
-class myApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
+  final recipes = [
+    {
+      'name': 'White Bread',
+      'steps': [
+        {'text': 'annealease'},
+        {'text': 'knead'},
+        {'text': 'rise'},
+        {'text': 'cook'}
+      ]
+    },
+    {
+      'name': 'Wheat Bread',
+      'steps': [
+        {'text': 'annealease'},
+        {'text': 'knead'},
+        {'text': 'rise'},
+        {'text': 'cook'}
+      ]
+    },
+  ];
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Amys App'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Amys App'),
       ),
-      body: new Container(
+      body: Container(
         padding: EdgeInsets.all(20.0),
-        child: new Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            new AwesomeButton()
-          ],
-        ),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: recipes.map(_recipeBuilder).toList()),
       ),
     );
+  }
+
+  Widget _recipeBuilder(Map<String, Object> recipe) {
+    final String name = recipe['name'];
+    final List<Map<String, Object>> steps = recipe['steps'];
+    return Card(
+        child: Container(
+            padding: EdgeInsets.all(20),
+            child: ListBody(children: <Widget>[
+              Text("Recipe: $name"),
+              ...steps.map(_stepBuilder).toList()
+            ])));
+  }
+
+  Widget _stepBuilder(Map<String, Object> step) {
+    final String stepText = step['text'];
+    return Text('Step: $stepText');
   }
 }
 
 class AwesomeButton extends StatefulWidget {
   @override
   AwesomeButtonState createState() {
-    return new AwesomeButtonState();
+    return AwesomeButtonState();
   }
 }
-class AwesomeButtonState extends State<AwesomeButton>{
+
+class AwesomeButtonState extends State<AwesomeButton> {
   int counter = 0;
   List<String> strings = ["Flutter", "Is", "Awesome"];
   var displayedString = "";
 
-onPressed() {
-  setState(() {
-    displayedString = strings[counter];
-    counter = counter < 2 ?  counter+1 : 0; 
-  });
-}
-  @override
-  Widget build(BuildContext context) {
-    return new RaisedButton(child: new Text(displayedString), onPressed: onPressed);
+  onPressed() {
+    setState(() {
+      displayedString = strings[counter];
+      counter = counter < 2 ? counter + 1 : 0;
+    });
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return RaisedButton(child: Text(displayedString), onPressed: onPressed);
+  }
 }

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "818072617948",
+    "firebase_url": "https://flour-water-salt-yeast.firebaseio.com",
+    "project_id": "flour-water-salt-yeast",
+    "storage_bucket": "flour-water-salt-yeast.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818072617948:android:6cf974814e660a4c44c519",
+        "android_client_info": {
+          "package_name": "com.example.flourWaterSaltYeast"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818072617948-0cbrd2of1gs6qt0eadivdff9vk28nm7q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsncy6sXoGrDBAr8Fs7CYwEACEjrkVNns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "818072617948-0cbrd2of1gs6qt0eadivdff9vk28nm7q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "818072617948-sop8ird19ef576cefpgsssbiqekr6ar5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flourWaterSaltYeast"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
