@@ -17,15 +17,18 @@ class _RootPageState extends State<RootPage> {
 
   void initState() {
     super.initState();
-    widget.auth.currentUser().then((userId) {
-      print(userId);
-      print("in root");
-      setState(() {
-        _authStatus = userId == null ? AuthStatus.notSignedIn : AuthStatus.signedIn;
-        _user = userId;
+    if (widget.auth != null) {
+      widget.auth.currentUser().then((userId) {
+        print(userId);
+        print("in root");
+        setState(() {
+          _authStatus =
+              userId == null ? AuthStatus.notSignedIn : AuthStatus.signedIn;
+          _user = userId;
+        });
+        print(_user);
       });
-      print(_user);
-    });
+    }
   }
 
   void _signOut() {
@@ -57,5 +60,19 @@ class _RootPageState extends State<RootPage> {
       case AuthStatus.signedIn:
         return HomePage(_signOut, _user);
     }
+    return NotFoundPage();
+  }
+}
+
+class NotFoundPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Amys App'),
+        ),
+        body: Container(
+            padding: EdgeInsets.all(20.0),
+            child: Column(children: <Widget>[Text("1223")])));
   }
 }
